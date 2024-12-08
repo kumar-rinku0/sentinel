@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { useAuth } from '../../src/AuthProvider';
 import "./auth.css";
 
 
+
 const SignIn = () => {
+  const { isAuthenticated, user, signIn, signOut } = useAuth();
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -18,10 +23,12 @@ const SignIn = () => {
     axios.post('/api/user/signin', inputs)
       .then(function (response) {
         console.log(response.data);
+        signIn(response.data.user);
+        navigate('/');
       })
-      .catch(function (error) {
+      .catch((error) => {
         // handle error
-        console.log(error);
+        console.log(error.response.data);
       })
   }
 

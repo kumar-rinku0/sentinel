@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import axios from 'axios';
 import "./auth.css"
+import { useAuth } from '../../src/AuthProvider';
+import { useNavigate } from 'react-router';
 //const axios = require('axios'); // legacy way
 
 // Make a request for a user with a given ID
 
 function SignUp() {
+  const { isAuthenticated, user, signIn, signOut } = useAuth();
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -20,12 +23,13 @@ function SignUp() {
     axios.post('/api/user/signup', inputs)
       .then(function (response) {
         console.log(response.data);
+        signIn(response.data.user);
+        navigate("/")
       })
-      .catch(function (error) {
+      .catch((error) => {
         // handle error
-        console.log(error);
+        console.log(error.response.data);
       })
-
   }
 
   return (

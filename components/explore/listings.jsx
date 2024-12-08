@@ -4,15 +4,11 @@ import Card from './card';
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
-  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true); // Add loading state
   useEffect(() => {
     axios.get("/api/listings").then((res) => {
-      console.log(res.data.listings);
+      console.log(res.data);
       setListings(res.data.listings);
-      if (res.data.user) {
-        setUser(res.data.user);
-      }
       setLoading(false);
     }).catch((err) => {
       console.log(err)

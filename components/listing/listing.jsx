@@ -7,7 +7,8 @@ const Listing = () => {
   let { id } = useParams();
   console.log(id);
   const [listing, setListing] = useState([]);
-  const { title, description, image, price } = listing;
+  const { title, description, location, image, price } = listing;
+  console.log(location);
   const [loading, setLoading] = useState(true); // Add loading state
   useEffect(() => {
     axios.get(`/api/listings/${id}`).then((res) => {
@@ -30,6 +31,7 @@ const Listing = () => {
           <Image image={image} />
           <div>{description}</div>
           <div>{price}</div>
+          <div>{location.value + ", " + location.country}</div>
         </div>
       )}
     </div>

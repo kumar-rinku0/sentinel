@@ -22,3 +22,9 @@ a {
 .not-active {
   color: black;
 }
+
+.layout-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

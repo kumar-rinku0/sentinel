@@ -1,14 +1,15 @@
 import React from 'react'
 import Image from './image';
 import TimeInAgo from './time-in-ago';
+import { Link } from 'react-router';
 
 const Card = ({ listing }) => {
   const { _id, title, image, description, location, createdAt } = listing;
   return (
     <div>
-      <a href={`/api/listings/${_id}`}>
+      <Link to={`/${_id}`}>
         <Image image={image} />
-      </a>
+      </Link>
       <h4 style={{ margin: 0 }}>
         {title}
       </h4>

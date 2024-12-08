@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import "./auth.css"
 //const axios = require('axios'); // legacy way
 
 // Make a request for a user with a given ID
@@ -28,33 +29,33 @@ function SignUp() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Usename:
+    <div className='form-container'>
+      <h3>Register!</h3>
+      <form onSubmit={handleSubmit} className='auth-form'>
         <input
           type="text"
           name="username"
           value={inputs.username || ""}
+          placeholder='username'
           onChange={handleChange}
         />
-      </label>
-      <label>E-mail:
         <input
           type="email"
           name="email"
           value={inputs.email || ""}
+          placeholder='e-mail'
           onChange={handleChange}
         />
-      </label>
-      <label>Password:
         <input
           type="password"
           name="password"
           value={inputs.password || ""}
+          placeholder='password'
           onChange={handleChange}
         />
-      </label>
-      <input type="submit" />
-    </form>
+        <button type="submit" className='btn'>Register!</button>
+      </form>
+    </div>
   )
 }
 

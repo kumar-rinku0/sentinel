@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import "./auth.css";
+
 
 const SignIn = () => {
   const [inputs, setInputs] = useState({});
@@ -24,25 +26,29 @@ const SignIn = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Usename:
+    <div className='form-container'>
+      <h3>Login!</h3>
+      <form onSubmit={handleSubmit} className='auth-form'>
         <input
           type="text"
           name="username"
           value={inputs.username || ""}
+          placeholder='username'
           onChange={handleChange}
         />
-      </label>
-      <label>Password:
+
+
         <input
           type="password"
           name="password"
           value={inputs.password || ""}
+          placeholder='password'
           onChange={handleChange}
         />
-      </label>
-      <input type="submit" />
-    </form>
+
+        <button type="submit" className='btn'>Sign IN</button>
+      </form>
+    </div>
   )
 }
 

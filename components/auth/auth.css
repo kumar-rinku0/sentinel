@@ -1,0 +1,51 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 50vh;
+}
+
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.auth-form input {
+  width: 15rem;
+  height: 3rem;
+  border: none;
+  font-size: 0.9rem;
+  border-radius: 2rem;
+  padding: 0 1rem;
+  background-color: lightgray;
+  color: black;
+  font-weight: 600;
+}
+
+.auth-form input::placeholder {
+  color: black;
+}
+
+.btn {
+  width: 17rem;
+  height: 3rem;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  cursor: pointer;
+  background-color: greenyellow;
+}
+
+h3 {
+  text-align: center;
+}
+
+.auth-form input:focus {
+  outline: none;
+}

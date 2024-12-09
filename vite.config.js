@@ -6,8 +6,9 @@ export default defineConfig({
   server: {
     // origin: "http://127.0.0.1:8000",
     proxy: {
-      "/api": "http://127.0.0.1:8000",
+      "/api": "https://delta-brown.vercel.app/",
     },
   },
+
   plugins: [react()],
 });

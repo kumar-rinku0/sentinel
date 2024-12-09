@@ -1,8 +1,7 @@
-# React + Vite
+#### React + Vite Frontend Application!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It's only a fronted application to use this.... use server proxy of "/api" route.
 
-Currently, two official plugins are available:
+#### server plugins are used:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[delta/luminous](https://github.com/kumar-rinku0/delta/tree/main/luminous) backend integrated with this frontend application.

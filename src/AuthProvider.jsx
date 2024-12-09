@@ -21,6 +21,13 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  useEffect(() => {
+    axios.get("/api").then((res) => {
+      console.log(res.data.user);
+      signIn(res.data.user)
+    })
+  }, [])
+
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, signIn, signOut }}>
       {children}

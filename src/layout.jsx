@@ -1,6 +1,5 @@
 import { Outlet, Link, NavLink } from "react-router";
 import "./layout.css"
-import { useEffect } from "react";
 import { useAuth } from "./AuthProvider";
 
 const Layout = () => {

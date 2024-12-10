@@ -6,8 +6,8 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "https://sentinel-0.vercel.app",
-        changeOrigin: false,
-        secure: true,
+        changeOrigin: true,
+        secure: false,
       },
     },
   },

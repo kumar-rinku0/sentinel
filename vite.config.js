@@ -7,7 +7,6 @@ export default defineConfig({
       "/api": {
         target: "https://sentinel-0.vercel.app",
         changeOrigin: true,
-        secure: false,
       },
     },
   },

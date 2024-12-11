@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import "./auth.css"
-import { useAuth } from '../../src/AuthProvider';
+import { useAuth } from '../../AuthProvider';
 import { useNavigate } from 'react-router';
 import AlertMsg from '../alert/alert-msg';
 //const axios = require('axios'); // legacy way

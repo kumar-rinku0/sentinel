@@ -21,7 +21,7 @@ export default function AlertMsg({ alert, setAlert }) {
         <Alert
           onClose={handleClose}
           severity={`${alert[1]}`}
-          variant="outlined"
+          variant="filled"
           sx={{ width: '100%' }}
         >
           {alert[0]}

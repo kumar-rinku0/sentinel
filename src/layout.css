@@ -4,27 +4,49 @@
   align-items: center;
 }
 
-ul {
+.navbar ul {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
   list-style: none;
 }
 
-a {
+.navbar a {
   text-decoration: none;
   color: black;
 }
 
-.active {
+.navbar .layout-btn {
+  cursor: pointer;
+}
+
+.navbar .layout-filled-btn {
+  background-color: orange;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .orange {
   color: orange;
 }
 
-.not-active {
+.navbar .black {
   color: black;
 }
 
-.layout-btn {
-  background-color: transparent;
-  border: none;
+.navbar .red {
+  color: red;
+}
+
+.navbar .layout-outline-btn {
+  border: 1px solid orange;
+  background-color: white;
+  color: orange;
+  padding: 1rem;
+  border-radius: 1rem;
   cursor: pointer;
 }

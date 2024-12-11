@@ -8,7 +8,7 @@ const Card = ({ listing }) => {
   return (
     <div>
       <Link to={`/${_id}`}>
-        <Image image={image} />
+        <Image image={image} imgWidth={"20rem"} imgHeight="15rem" imgObjFit="cover" />
       </Link>
       <h4 style={{ margin: 0 }}>
         {title}

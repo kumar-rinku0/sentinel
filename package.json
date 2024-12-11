@@ -17,6 +17,7 @@
     "javascript-time-ago": "^2.5.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
     "react-router": "^7.0.2"
   },
   "devDependencies": {

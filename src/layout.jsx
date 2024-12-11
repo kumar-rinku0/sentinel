@@ -8,22 +8,22 @@ const Layout = () => {
   return (
     <>
       <div className="navbar">
-        <div>
-          luminous
-        </div>
+        <Link to="/">
+          sentinel
+        </Link>
         <nav >
           <ul >
             <li>
-              <NavLink to="/" end>Home</NavLink>
+              <NavLink to="/" className={({ isActive }) => isActive ? "orange" : "black"}>  Home </NavLink>
             </li>
             {
               isAuthenticated && (
                 <>
                   <li>
-                    <button onClick={signOut} className="layout-btn">Logout</button>
+                    <div onClick={signOut} className="layout-btn">Logout</div>
                   </li>
                   <li>
-                    <button type="button" className="layout-btn">{user.username}</button>
+                    <div type="button" className="layout-btn">{user.username}</div>
                   </li>
                 </>
               )
@@ -32,10 +32,10 @@ const Layout = () => {
               !isAuthenticated && (
                 <>
                   <li>
-                    <NavLink to="/login" className={({ isActive }) => isActive ? "active" : "not-active"}>Login</NavLink>
+                    <NavLink to="/login" className={({ isActive }) => isActive ? "orange" : "black"}>Login</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/register">Register</NavLink>
+                    <NavLink to="/register" className={({ isActive }) => isActive ? "layout-outline-btn" : "layout-filled-btn"}>Get Started </NavLink>
                   </li>
                 </>
               )

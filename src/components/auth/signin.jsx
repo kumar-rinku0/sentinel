@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { useAuth } from '../../src/AuthProvider';
+import { useAuth } from '../../AuthProvider';
 import AlertMsg from '../alert/alert-msg';
 import "./auth.css";
 

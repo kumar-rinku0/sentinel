@@ -1,10 +1,15 @@
-:root {
+:root, body {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
+body::-webkit-scrollbar { 
+  display: none; 
+}
 

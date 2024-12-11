@@ -32,7 +32,7 @@ const Listings = () => {
           <Skeleton variant="rounded" width="20rem" height="15rem" />
         </div>
       ) : (
-        <>
+        <div className='listings'>
           <div>
             Listing Count: {listings.length}
           </div>
@@ -46,7 +46,7 @@ const Listings = () => {
               <div>No listings found.</div>
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   )

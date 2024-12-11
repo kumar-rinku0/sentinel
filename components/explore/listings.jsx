@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import Skeleton from '@mui/material/Skeleton';
+import "./explore.css";
 import Card from './card';
 
 const Listings = () => {
@@ -21,13 +23,20 @@ const Listings = () => {
   return (
     <div>
       {loading ? ( // Conditionally render based on loading state
-        <div>Loading listings...</div>
+        <div className='explore-card-container'>
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+          <Skeleton variant="rounded" width="20rem" height="15rem" />
+        </div>
       ) : (
         <>
           <div>
             Listing Count: {listings.length}
           </div>
-          <div style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+          <div className="explore-card-container">
             {Array.isArray(listings) && listings.length > 0 && listings.map((listing, idx) => (
               <div key={idx}>
                 <Card listing={listing} />

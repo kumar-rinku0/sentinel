@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Image = ({ image }) => {
+const Image = ({ image, imgWidth, imgHeight, imgObjFit }) => {
   const { url: imageUrl, fileName: imageName } = image;
   return (
-    <div style={{ width: "20rem" }}>
-      <img src={imageUrl} alt={imageName} style={{ width: "20rem", height: "15rem", objectFit: "cover" }} />
+    <div style={{ width: `${imgWidth}` }}>
+      <img src={imageUrl} alt={imageName} style={{ width: `${imgWidth}`, height: `${imgHeight}`, objectFit: `${imgObjFit}` }} />
     </div>
   )
 }

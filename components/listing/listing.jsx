@@ -28,7 +28,7 @@ const Listing = () => {
       {!loading && (
         <div>
           <div>{title}</div>
-          <Image image={image} />
+          <Image image={image} imgWidth="50rem" imgHeight="auto" />
           <div>{description}</div>
           <div>{price}</div>
           <div>{location.value + ", " + location.country}</div>

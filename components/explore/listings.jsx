@@ -6,7 +6,7 @@ const Listings = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   useEffect(() => {
-    axios.get("/api/listings").then((res) => {
+    axios.get("https://sentinel-0.vercel.app/api/listings").then((res) => {
       console.log(res.data);
       setListings(res.data.listings);
       setLoading(false);

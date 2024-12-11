@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Image from '../explore/image';
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import AlertMsg from '../alert/alert-msg';
 
 const Listing = () => {
   let { id } = useParams();
   console.log(id);
   const [listing, setListing] = useState([]);
+  const [alert, setAlert] = useState(null);
+  const navigate = useNavigate();
   const { title, description, location, image, price } = listing;
   console.log(location);
   const [loading, setLoading] = useState(true); // Add loading state
@@ -16,8 +19,12 @@ const Listing = () => {
       setListing(res.data.listing);
       setLoading(false);
     }).catch((err) => {
-      console.log(err)
+      const { msg, type } = err.response.data;
       setLoading(false);
+      setAlert([msg, type, true]);
+      setTimeout(() => {
+        navigate("/");
+      }, 3500);
     }
     );
     return;
@@ -25,7 +32,10 @@ const Listing = () => {
   return (
     <div>
       {loading && (<div>Loading...</div>)}
-      {!loading && (
+      {!loading && alert && (
+        <AlertMsg alert={alert} setAlert={setAlert} />
+      )}
+      {!loading && !alert && (
         <div>
           <div>{title}</div>
           <Image image={image} imgWidth="50rem" imgHeight="auto" />

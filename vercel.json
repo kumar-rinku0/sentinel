@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:match*",
+      "destination": "https://sentinel-0.vercel.app/:match*"
+    }
+  ]
+}

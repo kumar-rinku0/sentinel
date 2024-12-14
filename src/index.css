@@ -13,3 +13,15 @@ body::-webkit-scrollbar {
   display: none; 
 }
 
+.explore, .login, .register {
+  min-height: 90vh;
+  overflow-y: scroll;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.explore::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+

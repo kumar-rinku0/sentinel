@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       console.log(res.data.user);
       signIn(res.data.user)
     })
-  }, [])
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, signIn, signOut }}>

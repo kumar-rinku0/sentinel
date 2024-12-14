@@ -42,36 +42,38 @@ function SignUp() {
   }
 
   return (
-    <div className='form-container'>
-      {alert && (<AlertMsg alert={alert} setAlert={setAlert} />)}
-      <h3>Register!</h3>
-      <form onSubmit={handleSubmit} className='auth-form'>
-        <input
-          type="text"
-          name="username"
-          value={inputs.username || ""}
-          placeholder='username'
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={inputs.email || ""}
-          placeholder='e-mail'
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={inputs.password || ""}
-          placeholder='password'
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" className='btn' disabled={isAuthenticated}>Register!</button>
-      </form>
+    <div className='register'>
+      <div className='form-container'>
+        {alert && (<AlertMsg alert={alert} setAlert={setAlert} />)}
+        <h3>Register!</h3>
+        <form onSubmit={handleSubmit} className='auth-form'>
+          <input
+            type="text"
+            name="username"
+            value={inputs.username || ""}
+            placeholder='username'
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            value={inputs.email || ""}
+            placeholder='e-mail'
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={inputs.password || ""}
+            placeholder='password'
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" className='btn' disabled={isAuthenticated}>Register!</button>
+        </form>
+      </div>
     </div>
   )
 }

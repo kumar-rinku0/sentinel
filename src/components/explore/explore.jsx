@@ -4,7 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 import "./explore.css";
 import Card from './card';
 
-const Listings = () => {
+const Explore = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   useEffect(() => {
@@ -18,21 +18,23 @@ const Listings = () => {
     }
     );
     return;
-  }, [])
+  }, [setListings, setLoading])
 
   return (
     <div>
       {loading ? ( // Conditionally render based on loading state
-        <div className='explore-card-container'>
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
-          <Skeleton variant="rounded" width="20rem" height="15rem" />
+        <div className='explore'>
+          <div className='explore-card-container'>
+            <Skeleton variant="rounded" width="20rem" height="15rem" />
+            <Skeleton variant="rounded" width="20rem" height="15rem" />
+            <Skeleton variant="rounded" width="20rem" height="15rem" />
+            <Skeleton variant="rounded" width="20rem" height="15rem" />
+            <Skeleton variant="rounded" width="20rem" height="15rem" />
+            {/* <Skeleton variant="rounded" width="20rem" height="15rem" /> */}
+          </div>
         </div>
       ) : (
-        <div className='listings'>
+        <div className='explore'>
           <div>
             Listing Count: {listings.length}
           </div>
@@ -52,4 +54,4 @@ const Listings = () => {
   )
 }
 
-export default Listings
+export default Explore;

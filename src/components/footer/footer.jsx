@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import React from "react";
 import "./footer.css";
 import { FaDiscord, FaGithub, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -24,16 +25,16 @@ const Footer = () => {
         <div className="copyright">Copyright © 2024 InferNo, All rights reserved.</div>
         <div>
           <div className="socials">
-            <Link href={"/"} prefetch={false}>
+            <Link to={"https://github.com/kumar-rinku0"} prefetch={false}>
               <FaGithub />
             </Link>
-            <Link href={"/"} prefetch={false}>
-              <FaDiscord />
+            <Link to={"https://www.linkedin.com/in/kumar-rinku0"} prefetch={false}>
+              <FaLinkedin />
             </Link>
-            <Link href={"/"} prefetch={false}>
+            <Link to={"https://www.youtube.com/watch?v=wLilEGL0Cns"} prefetch={false}>
               <FaYoutube />
             </Link>
-            <Link href={"/"} prefetch={false}>
+            <Link to={"https://www.instagram.com/kumar_rinku_"} prefetch={false}>
               <FaInstagram />
             </Link>
           </div>

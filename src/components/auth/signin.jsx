@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
 import AlertMsg from '../alert/alert-msg';
 import "./auth.css";
+import { DiVim } from 'react-icons/di';
 
 
 
@@ -12,7 +13,6 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
   const [alert, setAlert] = useState([null, null, false]);
-  let msg = null;
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -35,14 +35,14 @@ const SignIn = () => {
       })
       .catch((error) => {
         // handle error
-        msg = error.response.data.msg || "server error!";
+        let msg = error.response.data.msg || "server error!";
         console.log(msg);
         setAlert([msg, "error", true]);
       })
   }
 
   return (
-    <>
+    <div className='login'>
       <div className='form-container'>
         {alert && (<AlertMsg alert={alert} setAlert={setAlert} />)}
         <h3>Login!</h3>
@@ -69,7 +69,7 @@ const SignIn = () => {
           <button type="submit" className='btn' disabled={isAuthenticated}>Sign IN</button>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

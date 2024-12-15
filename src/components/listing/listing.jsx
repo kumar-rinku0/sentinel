@@ -2,9 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Image from '../explore/image';
 import { useParams, useNavigate } from "react-router";
-import AlertMsg from '../alert/alert-msg';
-import { useAuth } from "../../AuthProvider";
 import Map from './map';
+import PostReview from './post-review';
 
 
 
@@ -13,12 +12,10 @@ const handleUpdateClick = (id) => {
 }
 
 const Listing = () => {
-  const { isAuthenticated, user, signIn, signOut } = useAuth();
   let { id } = useParams();
   const [accessToken, setAccessToken] = useState(null);
   const [listingCreator, setListingCreator] = useState(null);
   const [listing, setListing] = useState([]);
-  const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
   const { title, description, location, image, price, reviews, createdBy } = listing;
   console.log(location);
@@ -35,7 +32,6 @@ const Listing = () => {
     }).catch((err) => {
       console.log(err.response.data);
       const { msg, type } = err.response.data;
-      setAlert([msg, type, true]);
     })
   }
 
@@ -49,7 +45,6 @@ const Listing = () => {
     }).catch((err) => {
       const { msg, type } = err.response.data;
       setLoading(false);
-      setAlert([msg, type, true]);
       setTimeout(() => {
         navigate("/");
       }, 3500);
@@ -62,13 +57,6 @@ const Listing = () => {
     return (
       <div>
         <div>Loading...</div>
-      </div>
-    )
-  }
-  if (alert) {
-    return (
-      <div className='listing'>
-        <AlertMsg alert={alert} setAlert={setAlert} />
       </div>
     )
   }
@@ -89,16 +77,7 @@ const Listing = () => {
           map
         </div>
       </div>
-      {isAuthenticated && user._id === createdBy ? (
-        <div className='btn-container'>
-          <button className='btn' type="button" onClick={() => handleDeleteClick(listing._id, createdBy)}>Delete Listing</button>
-          <button className='btn' type="button" onClick={() => handleUpdateClick(listing._id)}>Update Listing</button>
-        </div>
-      ) : (
-        <div className='btn-container'>
-          <button className='btn' type="button">Post Review!</button>
-        </div>
-      )}
+      <PostReview createdBy={createdBy} id={id} />
       <div className='reviews-container'>
         {reviews.map(({ username, msg, rating }) => {
           return (

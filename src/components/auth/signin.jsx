@@ -2,22 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
-import AlertMsg from '../alert/alert-msg';
 import "./auth.css";
-import { DiVim } from 'react-icons/di';
+import { useMsg } from '../alert/alert-provider';
 
 
 
 const SignIn = () => {
+  const { setAlert } = useMsg();
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
-  const [alert, setAlert] = useState([null, null, false]);
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
+    setInputs((values) => ({ ...values, [name]: value }))
   }
 
   const handleSubmit = (event) => {
@@ -29,14 +27,13 @@ const SignIn = () => {
         const user = response.data.user;
         signIn(user);
         setAlert([`hi ${user.username} welcome to sentinel.`, "success", true]);
-        setTimeout(() => {
-          navigate('/');
-        }, 3100);
+        navigate('/');
       })
       .catch((error) => {
         // handle error
         let msg = error.response.data.msg || "server error!";
         console.log(msg);
+        setAlert([`hi ${user.username} welcome to sentinel.`, "success", true]);
         setAlert([msg, "error", true]);
       })
   }
@@ -44,7 +41,6 @@ const SignIn = () => {
   return (
     <div className='login'>
       <div className='form-container'>
-        {alert && (<AlertMsg alert={alert} setAlert={setAlert} />)}
         <h3>Login!</h3>
         <form onSubmit={handleSubmit} className='auth-form'>
           <input

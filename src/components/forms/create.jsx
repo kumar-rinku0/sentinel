@@ -3,13 +3,11 @@ import { useState } from 'react'
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import AlertMsg from '../alert/alert-msg';
 
 const Create = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const [inputs, setInputs] = useState({});
   const [disableBtn, setDisableBtn] = useState(false);
-  const [alert, setAlert] = useState([null, null, false]);
   const navigate = useNavigate();
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,7 +27,6 @@ const Create = () => {
     axios.post("api/listings/create", listing, config).then((res) => {
       console.log(res.data);
       const { msg, type } = res.data;
-      setAlert([msg, type, true]);
       setTimeout(() => {
         navigate("/");
       }, 3200);
@@ -37,7 +34,6 @@ const Create = () => {
     }).catch((err) => {
       console.log(err.response.data);
       const { msg, type } = err.response.data;
-      setAlert([msg, type, true]);
       setDisableBtn(false);
     })
   }
@@ -52,7 +48,6 @@ const Create = () => {
   }
   return (
     <div className='create'>
-      {alert && <AlertMsg alert={alert} setAlert={setAlert} />}
       <div>
         <div className='create-form-container'>
           <form onSubmit={handleSubmit} className='auth-form'>

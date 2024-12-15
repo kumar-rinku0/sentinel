@@ -31,10 +31,9 @@ const SignIn = () => {
       })
       .catch((error) => {
         // handle error
-        let msg = error.response.data.msg || "server error!";
-        console.log(msg);
-        setAlert([`hi ${user.username} welcome to sentinel.`, "success", true]);
-        setAlert([msg, "error", true]);
+        console.error(error.response.data);
+        const { msg, type } = error.response.data;
+        setAlert([msg, type, true]);
       })
   }
 

@@ -1,3 +1,13 @@
 .create {
   min-height: 90vh;
 }
+
+.create .create-form-container {
+  padding: 1rem;
+}
+
+.create .create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

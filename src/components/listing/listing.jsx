@@ -8,11 +8,6 @@ import PostReview from './post-review';
 import { Skeleton } from '@mui/material';
 
 
-
-const handleUpdateClick = (id) => {
-  console.log(id);
-}
-
 const Listing = () => {
   const { setAlert } = useMsg();
   let { id } = useParams();
@@ -23,19 +18,6 @@ const Listing = () => {
   const { title, description, location, image, price, reviews, createdBy } = listing;
   console.log(location);
   const [loading, setLoading] = useState(true); // Add loading state
-
-  const handleDeleteClick = (id, createdBy) => {
-    axios.post(`api/listings/${id}/${createdBy}`).then((res) => {
-      console.log(res.data);
-      const { msg, type } = res.data;
-      setAlert([msg, type, true]);
-      navigate("/");
-    }).catch((err) => {
-      console.log(err.response.data);
-      const { msg, type } = err.response.data;
-      setAlert([msg, type, true]);
-    })
-  }
 
   useEffect(() => {
     axios.get(`/api/listings/${id}`).then((res) => {
@@ -73,13 +55,12 @@ const Listing = () => {
           <div>{description}</div>
           <div> &#8377; {price.toLocaleString()}</div>
           <div>{location.value + ", " + location.country}</div>
+          <PostReview createdBy={createdBy} id={id} />
         </div>
         <div className='map'>
-          {/* <Map accessToken={accessToken} coordinates={location.geometry.coordinates} /> */}
-          map
+          <Map accessToken={accessToken} coordinates={location.geometry.coordinates} />
         </div>
       </div>
-      <PostReview createdBy={createdBy} id={id} />
       <div className='reviews-container'>
         {reviews.map(({ username, msg, rating }) => {
           return (

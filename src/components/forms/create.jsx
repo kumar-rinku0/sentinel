@@ -3,9 +3,11 @@ import { useState } from 'react'
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { useMsg } from "../alert/alert-provider";
 
 const Create = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
+  const { setAlert } = useMsg();
   const [inputs, setInputs] = useState({});
   const [disableBtn, setDisableBtn] = useState(false);
   const navigate = useNavigate();
@@ -27,13 +29,13 @@ const Create = () => {
     axios.post("api/listings/create", listing, config).then((res) => {
       console.log(res.data);
       const { msg, type } = res.data;
-      setTimeout(() => {
-        navigate("/");
-      }, 3200);
-
+      setAlert([msg, type, true]);
+      navigate("/");
+      setDisableBtn(false);
     }).catch((err) => {
       console.log(err.response.data);
       const { msg, type } = err.response.data;
+      setAlert([msg, type, true]);
       setDisableBtn(false);
     })
   }

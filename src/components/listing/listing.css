@@ -11,6 +11,13 @@
   gap: 2rem;
 }
 
+.listing .content .img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
 .listing .content .img img {
   width: 20rem;
   height: 15rem;
@@ -19,11 +26,17 @@
 
 .listing .map #map-container {
   width: 20rem;
-  height: 20rem;
+  height: 25rem;
 }
 
 .listing .content, .listing .map {
   width: 100%;
+}
+
+.listing .map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -62,7 +75,10 @@
 }
 
 .listing .btn-container {
+  min-height: 3rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   padding: 0.5rem;
 }
@@ -80,7 +96,7 @@
   }
   .listing .map #map-container {
     width: 20rem;
-    height: 20rem;
+    height: 25rem;
   }
   .listing .content, .listing .map {
     width: 50%;
@@ -88,47 +104,47 @@
 }
 
 @media (min-width: 1020px) {
-  .listing .content-map-container {
-    flex-direction: row;
-    align-items: center;
-  }
   .listing .content .img img {
     width: 30rem;
     height: 20rem;
   }
   .listing .map #map-container {
     width: 30rem;
-    height: 20rem;
-  }
-  .listing .content, .listing .map {
-    width: 50%;
+    height: 30rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .listing .content-map-container {
-    flex-direction: row;
-  }
+
   .listing .content .img img {
     width: 35rem;
     height: 25rem;
   }
   .listing .map #map-container {
     width: 35rem;
-    height: 25rem;
+    height: 35rem;
   }
 }
 
 @media (min-width: 1400px) {
-  .listing .content-map-container {
-    flex-direction: row;
-  }
+
   .listing .content .img img {
     width: 40rem;
-    height: 25rem;
+    height: 30rem;
   }
   .listing .map #map-container {
     width: 40rem;
-    height: 25rem;
+    height: 35rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .listing .content .img img {
+    width: 45rem;
+    height: 30rem;
+  }
+  .listing .map #map-container {
+    width: 50rem;
+    height: 35rem;
   }
 }

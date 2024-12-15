@@ -3,16 +3,15 @@ import axios from 'axios';
 import "./auth.css"
 import { useAuth } from '../../AuthProvider';
 import { useNavigate } from 'react-router';
-import AlertMsg from '../alert/alert-msg';
 //const axios = require('axios'); // legacy way
 
 // Make a request for a user with a given ID
 
 function SignUp() {
+  const { setAlert } = useMsg();
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
-  const [alert, setAlert] = useState([null, null, false]);
   let msg = null;
   const handleChange = (event) => {
     const name = event.target.name;
@@ -25,26 +24,22 @@ function SignUp() {
     console.log(inputs);
     axios.post('/api/user/signup', inputs)
       .then(function (response) {
-        console.log(response.data);
         const user = response.data.user;
         signIn(user);
         setAlert([`hi ${user.username} welcome to sentinel.`, "success", true]);
-        setTimeout(() => {
-          navigate('/');
-        }, 3100);
+        navigate('/');
       })
       .catch((error) => {
         // handle error
         msg = error.response.data.msg || "server error!";
-        console.log(msg);
         setAlert([msg, "error", true]);
+        console.log(msg);
       })
   }
 
   return (
     <div className='register'>
       <div className='form-container'>
-        {alert && (<AlertMsg alert={alert} setAlert={setAlert} />)}
         <h3>Register!</h3>
         <form onSubmit={handleSubmit} className='auth-form'>
           <input

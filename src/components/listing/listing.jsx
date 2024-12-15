@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Image from '../explore/image';
+import { useMsg } from '../alert/alert-provider';
 import { useParams, useNavigate } from "react-router";
 import Map from './map';
 import PostReview from './post-review';
+import { Skeleton } from '@mui/material';
 
 
 
@@ -12,6 +14,7 @@ const handleUpdateClick = (id) => {
 }
 
 const Listing = () => {
+  const { setAlert } = useMsg();
   let { id } = useParams();
   const [accessToken, setAccessToken] = useState(null);
   const [listingCreator, setListingCreator] = useState(null);
@@ -26,12 +29,11 @@ const Listing = () => {
       console.log(res.data);
       const { msg, type } = res.data;
       setAlert([msg, type, true]);
-      setTimeout(() => {
-        navigate("/");
-      }, 3200);
+      navigate("/");
     }).catch((err) => {
       console.log(err.response.data);
       const { msg, type } = err.response.data;
+      setAlert([msg, type, true]);
     })
   }
 
@@ -44,10 +46,8 @@ const Listing = () => {
       setLoading(false);
     }).catch((err) => {
       const { msg, type } = err.response.data;
-      setLoading(false);
-      setTimeout(() => {
-        navigate("/");
-      }, 3500);
+      setAlert([msg, type, true]);
+      navigate("/");
     }
     );
     return;
@@ -55,8 +55,10 @@ const Listing = () => {
 
   if (loading) {
     return (
-      <div>
-        <div>Loading...</div>
+      <div className='listing'>
+        <div>
+          loading...
+        </div>
       </div>
     )
   }

@@ -2,6 +2,7 @@ import SignIn from './components/auth/signin'
 import SignUp from './components/auth/signup'
 import Explore from './components/explore/explore'
 import Header from './components/header/header'
+import MyListing from './components/explore/my-listing'
 import { BrowserRouter, Routes, Route } from "react-router";
 import NoPage from './no-page'
 import Listing from './components/listing/listing'
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="create" element={<Create />} />
             <Route path="login" element={<SignIn />} />
             <Route path="register" element={<SignUp />} />
+            <Route path="mylisting" element={<MyListing />} />
             <Route path=":id" element={<Listing />} />
             <Route path="*" element={<NoPage />} />
           </Route>

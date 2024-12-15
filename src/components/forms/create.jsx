@@ -50,7 +50,7 @@ const Create = () => {
     <div className='create'>
       <div>
         <div className='create-form-container'>
-          <form onSubmit={handleSubmit} className='auth-form'>
+          <form onSubmit={handleSubmit} className='create-form'>
             <input
               type="text"
               name="title"

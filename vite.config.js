@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://sentinel-0.vercel.app",
+        target: "http://localhost:8000",
         changeOrigin: true,
       },
     },

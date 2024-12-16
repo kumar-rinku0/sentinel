@@ -4,11 +4,12 @@ import axios from 'axios';
 import { useMsg } from '../alert/alert-provider';
 import { useNavigate } from "react-router";
 
-const PostReview = ({ createdBy, id }) => {
+const PostReview = ({ createdBy, id, setListing }) => {
   const { setAlert } = useMsg();
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(false);
   const [inputs, setInputs] = useState({});
   const renderReviewForm = () => {
     setIsVisible((prevState) => !prevState);
@@ -23,16 +24,22 @@ const PostReview = ({ createdBy, id }) => {
   // handler of form submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisableBtn(true);
     const formData = new FormData(e.target);
     const review = Object.fromEntries(formData);
-    axios.post(`api/listings/${id}`, review).then((res) => {
+    axios.post(`api/review/${id}`, review).then((res) => {
       console.log(res.data);
-      const { msg, type } = res.data;
+      const { msg, type, listing } = res.data;
       setAlert([msg, type, true]);
+      setDisableBtn(false);
+      setListing((prev) => ({ ...prev, reviews: listing.reviews }));
+      setInputs("");
+      setIsVisible(false);
     }).catch((err) => {
       console.error(err.response.data);
       const { msg, type } = err.response.data;
       setAlert([msg, type, true]);
+      setDisableBtn(false);
     })
   }
 
@@ -70,7 +77,7 @@ const PostReview = ({ createdBy, id }) => {
           <input type="number" name="rating" id="rating" onChange={handleChange} value={inputs.rating || ''} />
           <input type="text" name="msg" id="msg" onChange={handleChange} value={inputs.msg || ''} />
           <button type='button' onClick={renderReviewForm}>cencel</button>
-          <button type='submit'>save</button>
+          <button type='submit' disabled={disableBtn}>save</button>
         </form>
       </div>
     )

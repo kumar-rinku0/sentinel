@@ -6,18 +6,29 @@ import { useParams, useNavigate } from "react-router";
 import Map from './map';
 import PostReview from './post-review';
 import { Skeleton } from '@mui/material';
+import { useAuth } from '../../AuthProvider';
+import { FaTrash } from 'react-icons/fa6';
 
 
 const Listing = () => {
   const { setAlert } = useMsg();
+  const { isAuthenticated, user, signIn, signOut } = useAuth();
   let { id } = useParams();
   const [accessToken, setAccessToken] = useState(null);
   const [listingCreator, setListingCreator] = useState(null);
   const [listing, setListing] = useState([]);
   const navigate = useNavigate();
   const { title, description, location, image, price, reviews, createdBy } = listing;
-  console.log(location);
   const [loading, setLoading] = useState(true); // Add loading state
+
+  const handleDeleteReview = (id, reviewId) => {
+    axios.delete(`api/review//${id}/${reviewId}`).then((res) => {
+      const { updatedListing } = res.data;
+      setListing(updatedListing);
+    }).catch((err) => {
+      console.error(err.response.data);
+    })
+  }
 
   useEffect(() => {
     axios.get(`/api/listings/${id}`).then((res) => {
@@ -55,17 +66,17 @@ const Listing = () => {
           <div>{description}</div>
           <div> &#8377; {price.toLocaleString()}</div>
           <div>{location.value + ", " + location.country}</div>
-          <PostReview createdBy={createdBy} id={id} />
+          <PostReview setListing={setListing} createdBy={createdBy} id={id} />
         </div>
         <div className='map'>
           <Map accessToken={accessToken} coordinates={location.geometry.coordinates} />
         </div>
       </div>
       <div className='reviews-container'>
-        {reviews.map(({ username, msg, rating }) => {
+        {reviews.map(({ username, msg, rating, _id }) => {
           return (
-            <div className='review' key={username}>
-              <h5 className='margin-0'>{username}</h5>
+            <div className='review' key={_id}>
+              <h5 className='margin-0'>{username}&nbsp;{isAuthenticated && user.username === username && (<span style={{ color: "red", cursor: "pointer" }} onClick={() => handleDeleteReview(id, _id)}> <FaTrash /> </span>)}</h5>
               <div> {rating} </div>
               <div className='text-sm'> {msg} </div>
             </div>

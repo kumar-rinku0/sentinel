@@ -15,7 +15,7 @@ const Map = ({ accessToken, coordinates, location }) => {
       container: mapContainerRef.current,
       center: coordinates,
       zoom: 12, // starting zoom
-      style: "mapbox://styles/mapbox/streets-v12",
+      style: "mapbox://styles/mapbox/satellite-streets-v12",
       attributionControl: false,
     });
 
@@ -33,11 +33,8 @@ const Map = ({ accessToken, coordinates, location }) => {
       })
     );
 
-    mapRef.current.addControl(
-      new mapboxgl.AttributionControl({
-        customAttribution: "Map design by Rinku Kumar!",
-      })
-    );
+    mapRef.current.addControl(new mapboxgl.NavigationControl());
+    mapRef.current.scrollZoom.disable();
 
     // const popup = new mapboxgl.Popup({
     //   className: "map-popup",
@@ -53,16 +50,6 @@ const Map = ({ accessToken, coordinates, location }) => {
       mapRef.current.remove()
     }
   }, [])
-
-  // mapboxgl.accessToken = accessToken;
-  // const newCoordinates = coordinates.split(",");
-  // const map = new mapboxgl.Map({
-  //   container: "map", // container ID
-  //   center: coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
-
-  // }).addControl(
-
-  // );
 
 
   return (

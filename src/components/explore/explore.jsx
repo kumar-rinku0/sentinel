@@ -39,8 +39,8 @@ const Explore = () => {
             Listing Count: {listings.length}
           </div>
           <div className="explore-card-container">
-            {Array.isArray(listings) && listings.length > 0 && listings.map((listing, idx) => (
-              <div key={idx}>
+            {Array.isArray(listings) && listings.length > 0 && listings.map((listing) => (
+              <div key={listing._id}>
                 <Card listing={listing} />
               </div>
             ))}

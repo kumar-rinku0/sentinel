@@ -22,7 +22,7 @@ const Listing = () => {
   const [loading, setLoading] = useState(true); // Add loading state
 
   const handleDeleteReview = (id, reviewId) => {
-    axios.delete(`api/review//${id}/${reviewId}`).then((res) => {
+    axios.delete(`/api/review//${id}/${reviewId}`).then((res) => {
       const { updatedListing } = res.data;
       setListing(updatedListing);
     }).catch((err) => {

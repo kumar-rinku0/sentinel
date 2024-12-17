@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from "../../AuthProvider";
 import axios from 'axios';
 import { useMsg } from '../alert/alert-provider';
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const PostReview = ({ createdBy, id, setListing }) => {
   const { setAlert } = useMsg();
@@ -66,7 +66,7 @@ const PostReview = ({ createdBy, id, setListing }) => {
     return (
       <div className='btn-container'>
         <button className='btn' type="button" onClick={() => handleDeleteClick(id, createdBy)}>Delete Listing</button>
-        <button className='btn' type="button" onClick={() => handleUpdateClick(id)}>Update Listing</button>
+        <Link to={`/${id}/edit`} >Update Listing</Link>
       </div>
     )
   }

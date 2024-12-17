@@ -1,16 +1,19 @@
 import "./create.css"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useMsg } from "../alert/alert-provider";
+import Image from "../explore/image";
 
 const Create = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const { setAlert } = useMsg();
   const [inputs, setInputs] = useState({});
   const [disableBtn, setDisableBtn] = useState(false);
+  const [img, setImg] = useState(null);
   const navigate = useNavigate();
+  const { id } = useParams();
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -26,11 +29,11 @@ const Create = () => {
         'content-type': 'multipart/form-data'
       }
     }
-    axios.post("api/listings/create", listing, config).then((res) => {
+    axios.post(id && img ? `/api/listings/${id}/edit` : "api/listings/create", listing, config).then((res) => {
       console.log(res.data);
       const { msg, type } = res.data;
       setAlert([msg, type, true]);
-      navigate("/");
+      id && img ? navigate(`/${id}`) : navigate("/");
       setDisableBtn(false);
     }).catch((err) => {
       console.log(err.response.data);
@@ -39,6 +42,17 @@ const Create = () => {
       setDisableBtn(false);
     })
   }
+  useEffect(() => {
+    if (id) {
+      axios.get(`/api/listings/${id}/edit`).then((res) => {
+        const listing = res.data.listing;
+        setImg(listing.image);
+        setInputs(values => ({ values, title: listing.title, price: listing.price, description: listing.description, location: listing.location.value, country: listing.location.country }))
+      }).catch((err) => {
+        console.error(err.response.data);
+      })
+    }
+  }, [id])
   if (!isAuthenticated) {
     return (
       <div className='create'>
@@ -78,14 +92,30 @@ const Create = () => {
               onChange={handleChange}
               required
             />
-            <input
-              type="file"
-              name="image"
-              value={inputs.image || ""}
-              placeholder='Title'
-              onChange={handleChange}
-              required
-            />
+            {id && img ? (
+              <>
+                <div>
+                  <Image image={img} imgHeight={200} imgWidth={300} imgObjFit="cover" />
+                </div>
+                <input
+                  type="file"
+                  name="image"
+                  value={inputs.image || ""}
+                  placeholder='Title'
+                  onChange={handleChange}
+                />
+              </>
+            ) : (
+              <input
+                type="file"
+                name="image"
+                value={inputs.image || ""}
+                placeholder='Title'
+                onChange={handleChange}
+                required
+              />
+            )
+            }
             <input
               type="text"
               name="location"
@@ -102,7 +132,7 @@ const Create = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit" className='btn' disabled={disableBtn}>Create!</button>
+            <button type="submit" className='btn' disabled={disableBtn}>{!id ? (<span> Create!</span>) : (<span>Update!</span>)}</button>
           </form>
         </div>
       </div>

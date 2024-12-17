@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://sentinel-0.vercel.app/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }

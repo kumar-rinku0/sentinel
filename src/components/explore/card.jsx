@@ -7,7 +7,7 @@ const Card = ({ listing }) => {
   const { _id, title, image, description, location, createdAt } = listing;
   return (
     <div>
-      <Link to={`/${_id}`}>
+      <Link to={`/listing/${_id}`}>
         <Image image={image} imgWidth={"20rem"} imgHeight="15rem" imgObjFit="cover" />
       </Link>
       <h4 style={{ margin: 0 }}>

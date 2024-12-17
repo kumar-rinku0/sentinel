@@ -27,7 +27,7 @@ const PostReview = ({ createdBy, id, setListing }) => {
     setDisableBtn(true);
     const formData = new FormData(e.target);
     const review = Object.fromEntries(formData);
-    axios.post(`api/review/${id}`, review).then((res) => {
+    axios.post(`/api/review/${id}`, review).then((res) => {
       console.log(res.data);
       const { msg, type, listing } = res.data;
       setAlert([msg, type, true]);
@@ -45,7 +45,7 @@ const PostReview = ({ createdBy, id, setListing }) => {
 
   // handler of deleting listing!
   const handleDeleteClick = (id, createdBy) => {
-    axios.post(`api/listings/${id}/${createdBy}`).then((res) => {
+    axios.post(`/api/listings/${id}/${createdBy}`).then((res) => {
       console.log(res.data);
       const { msg, type } = res.data;
       setAlert([msg, type, true]);
@@ -57,16 +57,12 @@ const PostReview = ({ createdBy, id, setListing }) => {
     })
   }
 
-  // handler of updating listing!
-  const handleUpdateClick = (id) => {
-    console.log(id);
-  }
 
   if (isAuthenticated && user._id === createdBy) {
     return (
       <div className='btn-container'>
         <button className='btn' type="button" onClick={() => handleDeleteClick(id, createdBy)}>Delete Listing</button>
-        <Link to={`/${id}/edit`} >Update Listing</Link>
+        <Link to={`/listing/${id}/edit`} >Update Listing</Link>
       </div>
     )
   }

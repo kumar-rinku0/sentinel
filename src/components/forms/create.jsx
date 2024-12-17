@@ -33,7 +33,7 @@ const Create = () => {
       console.log(res.data);
       const { msg, type } = res.data;
       setAlert([msg, type, true]);
-      id && img ? navigate(`/${id}`) : navigate("/");
+      id && img ? navigate(`/listing/${id}`) : navigate("/");
       setDisableBtn(false);
     }).catch((err) => {
       console.log(err.response.data);

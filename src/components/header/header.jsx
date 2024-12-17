@@ -19,6 +19,11 @@ const Header = () => {
       path: "/mylisting",
     },
     {
+      name: "profile",
+      icon: <FaUser />,
+      path: `${user?.username}`,
+    },
+    {
       name: "create",
       icon: <FaPlus />,
       path: "/create",

@@ -11,6 +11,7 @@ const SignIn = () => {
   const { setAlert } = useMsg();
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
+  const [disableBtn, setDisableBtn] = useState(false);
   const [inputs, setInputs] = useState({});
   const handleChange = (event) => {
     const name = event.target.name;
@@ -19,6 +20,7 @@ const SignIn = () => {
   }
 
   const handleSubmit = (event) => {
+    setDisableBtn(true);
     event.preventDefault();
     console.log(inputs);
     axios.post('/api/user/signin', inputs)
@@ -34,6 +36,7 @@ const SignIn = () => {
         console.error(error.response.data);
         const { msg, type } = error.response.data;
         setAlert([msg, type, true]);
+        setDisableBtn(false);
       })
   }
 
@@ -61,7 +64,7 @@ const SignIn = () => {
             required
           />
 
-          <button type="submit" className='btn' disabled={isAuthenticated}>Sign IN</button>
+          <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Sign IN</button>
         </form>
       </div>
     </div>

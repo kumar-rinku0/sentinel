@@ -12,6 +12,7 @@ function SignUp() {
   const { setAlert } = useMsg();
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const navigate = useNavigate();
+  const [disableBtn, setDisableBtn] = useState(false);
   const [inputs, setInputs] = useState({});
   let msg = null;
   const handleChange = (event) => {
@@ -21,6 +22,7 @@ function SignUp() {
   }
 
   const handleSubmit = (event) => {
+    setDisableBtn(true);
     event.preventDefault();
     console.log(inputs);
     axios.post('/api/user/signup', inputs)
@@ -35,6 +37,7 @@ function SignUp() {
         msg = error.response.data.msg || "server error!";
         setAlert([msg, "error", true]);
         console.log(msg);
+        setDisableBtn(false);
       })
   }
 
@@ -67,7 +70,7 @@ function SignUp() {
             onChange={handleChange}
             required
           />
-          <button type="submit" className='btn' disabled={isAuthenticated}>Register!</button>
+          <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Register!</button>
         </form>
       </div>
     </div>

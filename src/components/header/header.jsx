@@ -1,8 +1,7 @@
 import { Outlet, Link, NavLink } from "react-router";
 import "./header.css"
 import { useAuth } from "../../AuthProvider";
-import { FaHome } from "react-icons/fa";
-import { FaPlus, FaUser } from "react-icons/fa6";
+import { FaHouse, FaLinesLeaning, FaPlus, FaUser } from "react-icons/fa6";
 
 
 const Header = () => {
@@ -10,23 +9,23 @@ const Header = () => {
   const links = [
     {
       name: "home",
-      icon: <FaHome />,
+      icon: <FaHouse />,
       path: "/",
     },
     {
       name: `${user?.username}`,
-      icon: <FaUser />,
+      icon: <FaLinesLeaning />,
       path: "/mylisting",
-    },
-    {
-      name: "profile",
-      icon: <FaUser />,
-      path: `${user?.username}`,
     },
     {
       name: "create",
       icon: <FaPlus />,
       path: "/create",
+    },
+    {
+      name: "profile",
+      icon: <FaUser />,
+      path: `${user?.username}`,
     },
   ]
 

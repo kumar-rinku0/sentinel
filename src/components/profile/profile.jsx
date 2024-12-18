@@ -46,19 +46,19 @@ const Profile = () => {
         setAlert([msg, type, true]);
       })
     }
-  }
-  const handleDestroyAccount = () => {
-    axios.delete("/api/user/destroy").then((res) => {
-      console.log(res.data);
-      const { msg, type } = res.data;
-      setAlert([msg, type, true]);
-      signOut();
-      navigate("/");
-    }).then((err) => {
-      console.log(err.response.data);
-      const { msg, type } = err.response.data;
-      setAlert([msg, type, true]);
-    })
+    if (event.target.length === 2) {
+      axios.delete("/api/user/destroy").then((res) => {
+        console.log(res.data);
+        const { msg, type } = res.data;
+        setAlert([msg, type, true]);
+        signOut();
+        navigate("/");
+      }).then((err) => {
+        console.log(err.response.data);
+        const { msg, type } = err.response.data;
+        setAlert([msg, type, true]);
+      })
+    }
   }
   const renderForm = (id, toSet) => {
     setIsVisible((values) => ({ ...values, [id]: toSet }));
@@ -105,7 +105,13 @@ const Profile = () => {
         </div>
       )}
       <div>
-        <button type="button" onClick={handleDestroyAccount} >DELETE ACCOUNT</button>
+        <form onSubmit={handleOnsubmit}>
+          <div>
+            <input type="checkbox" name="isAgree" id="isAgree" required />
+            <label htmlFor="isAgree">deleting account will delete your created listings!</label>
+          </div>
+          <button type="submit" style={{ backgroundColor: "red" }} >DELETE ACCOUNT</button>
+        </form>
       </div>
     </div>
   )

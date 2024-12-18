@@ -60,7 +60,7 @@ const PostReview = ({ createdBy, id, setListing }) => {
 
   if (isAuthenticated && user._id === createdBy) {
     return (
-      <div className='btn-container'>
+      <div className='post-review'>
         <button className='btn' type="button" onClick={() => handleDeleteClick(id, createdBy)}>Delete Listing</button>
         <Link to={`/listing/${id}/edit`} >Update Listing</Link>
       </div>
@@ -68,18 +68,22 @@ const PostReview = ({ createdBy, id, setListing }) => {
   }
   if (isVisible) {
     return (
-      <div className='btn-container'>
-        <form onSubmit={handleSubmit}>
-          <input type="number" name="rating" id="rating" onChange={handleChange} value={inputs.rating || ''} />
-          <input type="text" name="msg" id="msg" onChange={handleChange} value={inputs.msg || ''} />
-          <button type='button' onClick={renderReviewForm}>cencel</button>
-          <button type='submit' disabled={disableBtn}>save</button>
+      <div className='post-review'>
+        <form onSubmit={handleSubmit} className='post-review-form'>
+          <div className='div1'>
+            <input type="number" name="rating" id="rating" onChange={handleChange} value={inputs.rating || ''} />
+            <input type="text" name="msg" id="msg" onChange={handleChange} value={inputs.msg || ''} />
+          </div>
+          <div className='div2'>
+            <button type='button' onClick={renderReviewForm}>cencel</button>
+            <button type='submit' disabled={disableBtn}>save</button>
+          </div>
         </form>
       </div>
     )
   }
   return (
-    <div className='btn-container'>
+    <div className='post-review'>
       <button className='btn' type="button" onClick={renderReviewForm}>Post Review!</button>
     </div>
   )

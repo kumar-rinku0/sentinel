@@ -1,4 +1,4 @@
-import { Outlet, Link, NavLink } from "react-router";
+import { Outlet, Link, NavLink, useNavigate } from "react-router";
 import "./header.css"
 import { useAuth } from "../../AuthProvider";
 import { FaHouse, FaLinesLeaning, FaPlus, FaUser } from "react-icons/fa6";
@@ -6,6 +6,7 @@ import { FaHouse, FaLinesLeaning, FaPlus, FaUser } from "react-icons/fa6";
 
 const Header = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
+  const navigate = useNavigate();
   const links = [
     {
       name: "home",
@@ -27,7 +28,12 @@ const Header = () => {
       icon: <FaUser />,
       path: `${user?.username}`,
     },
-  ]
+  ];
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/");
+  }
 
   if (!isAuthenticated) {
     return (
@@ -58,7 +64,7 @@ const Header = () => {
           Sentinel Prime!
         </Link>
         <div className="mobile">
-          <div onClick={signOut} className="layout-btn">Logout</div>
+          <div onClick={handleSignOut} className="layout-btn">Logout</div>
         </div>
         <nav className="navbar">
           {
@@ -74,19 +80,8 @@ const Header = () => {
             })
           }
           <div className="desktop navigation">
-            <div onClick={signOut} className="layout-btn">Logout</div>
+            <div onClick={handleSignOut} className="layout-btn">Logout</div>
           </div>
-          {/* <NavLink to="/" className={({ isActive }) => isActive ? "orange" : "black"}>
-            <FaHome />
-          </NavLink>
-
-          <NavLink to="/mylisting" className={({ isActive }) => isActive ? "orange" : "black"}>
-            <FaUser />
-          </NavLink>
-
-          <NavLink to="/create" className={({ isActive }) => isActive ? "orange" : "black"}>
-            <FaPlus />
-          </NavLink> */}
         </nav>
       </div>
       <Outlet />

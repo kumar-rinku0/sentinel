@@ -63,7 +63,7 @@ const Listing = () => {
           <div className='img'>
             <img src={image.url} alt={image.filename} />
           </div>
-          <div style={{ padding: "0 0.25rem" }}>
+          <div className='content-description'>
             <div>{description}</div>
             <div> &#8377; {price.toLocaleString()}</div>
             <div>{location.value + ", " + location.country}</div>

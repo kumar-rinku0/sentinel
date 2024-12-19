@@ -57,13 +57,13 @@ const Header = () => {
         <Link to="/">
           Sentinel Prime!
         </Link>
-        <nav className="navigation">
+        <div className="mobile">
           <div onClick={signOut} className="layout-btn">Logout</div>
-        </nav>
+        </div>
         <nav className="navbar">
           {
             links.map((link) => {
-              return (<NavLink className={({ isActive }) => isActive ? "orange" : "black"} key={link.path} to={link.path}>
+              return (<NavLink className={({ isActive }) => isActive ? "orange nav-click" : "black"} key={link.path} to={link.path}>
                 <span className="desktop">
                   {link.name}
                 </span>
@@ -73,6 +73,9 @@ const Header = () => {
               </NavLink>)
             })
           }
+          <div className="desktop navigation">
+            <div onClick={signOut} className="layout-btn">Logout</div>
+          </div>
           {/* <NavLink to="/" className={({ isActive }) => isActive ? "orange" : "black"}>
             <FaHome />
           </NavLink>

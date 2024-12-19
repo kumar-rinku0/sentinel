@@ -57,19 +57,21 @@ const Listing = () => {
   }
   return (
     <div className='listing'>
+      <h4 style={{ textAlign: 'center', margin: "0.5rem 0" }}>{title}</h4>
       <div className='content-map-container'>
         <div className='content'>
-          <h4>{title}</h4>
           <div className='img'>
             <img src={image.url} alt={image.filename} />
           </div>
-          <div>{description}</div>
-          <div> &#8377; {price.toLocaleString()}</div>
-          <div>{location.value + ", " + location.country}</div>
-          <PostReview setListing={setListing} createdBy={createdBy} id={id} />
+          <div style={{ padding: "0 0.25rem" }}>
+            <div>{description}</div>
+            <div> &#8377; {price.toLocaleString()}</div>
+            <div>{location.value + ", " + location.country}</div>
+          </div>
         </div>
         <div className='map'>
           <Map accessToken={accessToken} coordinates={location.geometry.coordinates} />
+          <PostReview setListing={setListing} createdBy={createdBy} id={id} />
         </div>
       </div>
       <div className='reviews-container'>

@@ -1,9 +1,10 @@
 .header {
   height: 4rem;
   display: flex;
-  background-color: aliceblue;
+  background-color: #A1A6B4;
   justify-content: space-around;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .header .navigation {
@@ -16,38 +17,41 @@
 
 .header a {
   text-decoration: none;
-  color: black;
+  color:  #000;;
 }
 
-.header .layout-btn {
+.header .logout-btn {
+  color: #2B2D42;
   cursor: pointer;
 }
 
 .header .layout-filled-btn {
-  background-color: orange;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #ef7b45;
   padding: 0.75rem;
   border-radius: 1rem;
-  color: white;
+  color: #2B2D42;
   border: none;
   cursor: pointer;
 }
 
 .header .orange {
-  color: orange;
+  color: #ef7b45;
 }
 
-.header .black {
-  color: black;
+.header .primary {
+  color: #2B2D42;
 }
 
-.header .red {
-  color: red;
+.header .white {
+  color: white;
 }
 
 .header .layout-outline-btn {
-  border: 1px solid orange;
-  background-color: white;
-  color: orange;
+  /* border: 1px solid #ef7b45; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  background-color: transparent;
+  color: white;
   padding: 0.75rem;
   border-radius: 1rem;
   cursor: pointer;
@@ -56,7 +60,10 @@
 .header .navbar {
   display: flex;
   position: fixed;
-  background-color: gray;
+  /* background-color: #8A8D91; */
+  /* background-color: #DADAD9; */
+  background-color: #A1A6B4;
+  /* background-color: #7D8491; */
   justify-content: space-around;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -64,6 +71,12 @@
   width: 100%;
   height: 4rem;
   z-index: 10;
+}
+
+.header .logo-shadow {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
 }
 
 .header .navbar .nav-click {
@@ -95,9 +108,12 @@
     gap: 2rem;
     width: 60%;
     height: 3rem;
+    box-shadow: none;
     text-transform: uppercase;
   }
   .header .navbar .nav-click {
+    /* box-shadow: none; */
+    padding: 0.5rem 1rem;
     background-color: transparent;
     border-radius: 1rem;
   }

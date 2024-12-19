@@ -39,7 +39,7 @@ const Header = () => {
     return (
       <>
         <div className="header">
-          <Link to="/">
+          <Link to="/" className="logo-shadow">
             Sentinel Prime!
           </Link>
           <nav className="navigation">
@@ -47,7 +47,7 @@ const Header = () => {
                 <NavLink to="/" className={({ isActive }) => isActive ? "orange" : "black"}>  Home </NavLink>
               </li> */}
 
-            <NavLink to="/login" className={({ isActive }) => isActive ? "orange" : "black"}>Login</NavLink>
+            <NavLink to="/login" className={({ isActive }) => isActive ? "white" : "primary"}>Login</NavLink>
 
             <NavLink to="/register" className={({ isActive }) => isActive ? "layout-outline-btn" : "layout-filled-btn"}>Get Started </NavLink>
 
@@ -60,16 +60,16 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <Link to="/">
+        <Link to="/" className="logo-shadow">
           Sentinel Prime!
         </Link>
         <div className="mobile">
-          <div onClick={handleSignOut} className="layout-btn">Logout</div>
+          <div onClick={handleSignOut} className="logout-btn">Logout</div>
         </div>
         <nav className="navbar">
           {
             links.map((link) => {
-              return (<NavLink className={({ isActive }) => isActive ? "orange nav-click" : "black"} key={link.path} to={link.path}>
+              return (<NavLink className={({ isActive }) => isActive ? "orange nav-click" : "primary"} key={link.path} to={link.path}>
                 <span className="desktop">
                   {link.name}
                 </span>
@@ -80,7 +80,7 @@ const Header = () => {
             })
           }
           <div className="desktop navigation">
-            <div onClick={handleSignOut} className="layout-btn">Logout</div>
+            <div onClick={handleSignOut} className="logout-btn">Logout</div>
           </div>
         </nav>
       </div>

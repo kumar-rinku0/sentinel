@@ -3,6 +3,7 @@ import { useAuth } from "../../AuthProvider";
 import axios from 'axios';
 import { useMsg } from '../alert/alert-provider';
 import { Link, useNavigate } from "react-router";
+import RatingComp from '../forms/ratting';
 
 const PostReview = ({ createdBy, id, setListing }) => {
   const { setAlert } = useMsg();
@@ -71,8 +72,8 @@ const PostReview = ({ createdBy, id, setListing }) => {
       <div className='post-review'>
         <form onSubmit={handleSubmit} className='post-review-form'>
           <div className='div1'>
-            <input type="number" name="rating" id="rating" onChange={handleChange} value={inputs.rating || ''} />
-            <input type="text" name="msg" id="msg" onChange={handleChange} value={inputs.msg || ''} />
+            <RatingComp />
+            <input type="text" name="msg" id="msg" placeholder='msg' onChange={handleChange} value={inputs.msg || ''} />
           </div>
           <div className='div2'>
             <button type='button' onClick={renderReviewForm}>cencel</button>

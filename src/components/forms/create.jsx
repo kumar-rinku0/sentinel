@@ -1,4 +1,5 @@
-import "./create.css"
+import "./create.css";
+// import "./image-preview.js";
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
@@ -6,17 +7,27 @@ import { useNavigate, useParams } from 'react-router';
 import { useMsg } from "../alert/alert-provider";
 import Image from "../explore/image";
 
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+
 const Create = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const { setAlert } = useMsg();
   const [inputs, setInputs] = useState({});
   const [disableBtn, setDisableBtn] = useState(false);
   const [img, setImg] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    if (event.target.name === 'image') {
+      setSelectedImg(event.target.files[0]);
+      console.log(event.target.files[0]);
+    }
     setInputs(values => ({ ...values, [name]: value }))
   }
   const handleSubmit = (e) => {
@@ -64,31 +75,35 @@ const Create = () => {
   }
   return (
     <div className='create'>
-      <div>
+      <div className="create-page">
         <div className='create-form-container'>
           <form onSubmit={handleSubmit} className='create-form'>
-            <input
+            <TextField
+              variant="standard"
               type="text"
               name="title"
               value={inputs.title || ""}
-              placeholder='Title'
+              label='Title'
               onChange={handleChange}
               required
             />
 
-            <input
+            <TextField
+              variant="standard"
               type="text"
               name="description"
               value={inputs.description || ""}
-              placeholder='description'
+              label='description'
               onChange={handleChange}
               required
             />
-            <input
+            <TextField
+              style={{ margin: "0 0 1rem 0" }}
+              variant="standard"
               type="number"
               name="price"
               value={inputs.price || ""}
-              placeholder='price'
+              label='price'
               onChange={handleChange}
               required
             />
@@ -97,47 +112,82 @@ const Create = () => {
                 <div>
                   <Image image={img} imgHeight={200} imgWidth={300} imgObjFit="cover" />
                 </div>
-                <input
-                  type="file"
-                  name="image"
-                  value={inputs.image || ""}
-                  placeholder='Title'
-                  onChange={handleChange}
-                />
+                <div className="custom__image-container">
+                  {/* <label htmlFor="image">upload image</label> */}
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                    value={inputs.image || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                {selectedImg && (
+                  <div className="preview">
+                    <img src={URL.createObjectURL(selectedImg)} alt="selectedImg" />
+                    {returnFileSize(selectedImg.size)}
+                  </div>
+                )}
               </>
             ) : (
-              <input
-                type="file"
-                name="image"
-                value={inputs.image || ""}
-                placeholder='Title'
-                onChange={handleChange}
-                required
-              />
+              <>
+                <div className="custom__image-container">
+                  {/* <label htmlFor="image">upload image</label> */}
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                    value={inputs.image || ""}
+                    label='Title'
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                {selectedImg && (
+                  <div className="preview">
+                    <img src={URL.createObjectURL(selectedImg)} alt="selectedImg" />
+                    {returnFileSize(selectedImg.size)}
+                  </div>
+                )}
+              </>
             )
             }
-            <input
+            <TextField
+              variant="standard"
               type="text"
               name="location"
               value={inputs.location || ""}
-              placeholder='location'
+              label='location'
               onChange={handleChange}
               required
             />
-            <input
+            <TextField
+              variant="standard"
               type="text"
               name="country"
               value={inputs.country || ""}
-              placeholder='country'
+              label='country'
               onChange={handleChange}
               required
             />
-            <button type="submit" className='btn' disabled={disableBtn}>{!id ? (<span> Create!</span>) : (<span>Update!</span>)}</button>
+            <Button style={{ marginTop: "0.5rem" }} variant="outlined" type="submit" className='btn' disabled={disableBtn}>{!id ? (<span> Create!</span>) : (<span>Update!</span>)}</Button>
           </form>
         </div>
       </div>
     </div>
   )
+}
+
+const returnFileSize = (number) => {
+  if (number < 1e3) {
+    return `${number} bytes`;
+  } else if (number >= 1e3 && number < 1e6) {
+    return `${(number / 1e3).toFixed(1)} KB`;
+  } else {
+    return `${(number / 1e6).toFixed(1)} MB`;
+  }
 }
 
 export default Create;

@@ -1,6 +1,6 @@
 .profile {
   margin: 0;
-  height: 90vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
 }
@@ -8,9 +8,10 @@
 .profile .profile-forms-container {
   display: flex;
   flex-direction: column;
+  max-width: 25rem;
+  gap: 2rem;
+  padding: 2rem 0.5rem;
   width: 20rem;
-  height: 30rem;
-  justify-content: space-evenly;
 }
 
 .profile .update-username {
@@ -53,3 +54,9 @@
   align-items: start;
 }
 
+
+@media (min-width: 720px) {
+  .profile .profile-forms-container {
+    width: 25rem;
+  }
+}

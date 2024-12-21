@@ -1,4 +1,55 @@
 .profile {
   margin: 0;
   height: 90vh;
+  display: flex;
+  justify-content: center;
 }
+
+.profile .profile-forms-container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  height: 30rem;
+  justify-content: space-evenly;
+}
+
+.profile .update-username {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile .change-password {
+  align-self: flex-start;
+}
+
+.profile .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile .flex-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile .text-sm {
+  font-size: 0.8rem;
+}
+
+.profile .change-password {
+  font-size: 0.8rem;
+}
+
+
+.profile .red {
+  color: #ff1111;
+}
+
+.profile .delelte-check {
+  display: flex;
+  align-items: start;
+}
+

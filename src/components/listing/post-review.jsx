@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useMsg } from '../alert/alert-provider';
 import { Link, useNavigate } from "react-router";
 import RatingComp from '../forms/ratting';
+import { Button } from "@mui/material"
+import TextField from '@mui/material/TextField';
 
 const PostReview = ({ createdBy, id, setListing }) => {
   const { setAlert } = useMsg();
@@ -62,8 +64,12 @@ const PostReview = ({ createdBy, id, setListing }) => {
   if (isAuthenticated && user._id === createdBy) {
     return (
       <div className='post-review'>
-        <button className='btn' type="button" onClick={() => handleDeleteClick(id, createdBy)}>Delete Listing</button>
-        <Link to={`/listing/${id}/edit`} >Update Listing</Link>
+        <Button type="button" variant='outlined' onClick={() => handleDeleteClick(id, createdBy)}>Delete Listing</Button>
+        <Link to={`/listing/${id}/edit`} >
+          <Button type='button' variant='outlined'>
+            Update Listing
+          </Button>
+        </Link>
       </div>
     )
   }
@@ -73,11 +79,13 @@ const PostReview = ({ createdBy, id, setListing }) => {
         <form onSubmit={handleSubmit} className='post-review-form'>
           <div className='div1'>
             <RatingComp />
-            <input type="text" name="msg" id="msg" placeholder='msg' onChange={handleChange} value={inputs.msg || ''} />
+          </div>
+          <div className='div1'>
+            <TextField size='small' id="standard-basic" label="message" variant="outlined" name='msg' value={inputs.msg || ""} onChange={handleChange} />
           </div>
           <div className='div2'>
-            <button type='button' onClick={renderReviewForm}>cencel</button>
-            <button type='submit' disabled={disableBtn}>save</button>
+            <Button variant='outlined' type='button' onClick={renderReviewForm}>cencel</Button>
+            <Button variant='outlined' type='submit' disabled={disableBtn}>save</Button>
           </div>
         </form>
       </div>
@@ -85,7 +93,7 @@ const PostReview = ({ createdBy, id, setListing }) => {
   }
   return (
     <div className='post-review'>
-      <button className='btn' type="button" onClick={renderReviewForm}>Post Review!</button>
+      <Button variant='outlined' type="button" onClick={renderReviewForm}>Post Review!</Button>
     </div>
   )
 }

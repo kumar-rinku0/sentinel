@@ -16,23 +16,23 @@ const StyledRating = styled(Rating)(({ theme }) => ({
 
 const customIcons = {
   1: {
-    icon: <SentimentVeryDissatisfiedIcon color="error" />,
+    icon: <SentimentVeryDissatisfiedIcon color="error" fontSize="large" />,
     label: 'Very Dissatisfied',
   },
   2: {
-    icon: <SentimentDissatisfiedIcon color="error" />,
+    icon: <SentimentDissatisfiedIcon color="error" fontSize="large" />,
     label: 'Dissatisfied',
   },
   3: {
-    icon: <SentimentSatisfiedIcon color="warning" />,
+    icon: <SentimentSatisfiedIcon color="warning" fontSize="large" />,
     label: 'Neutral',
   },
   4: {
-    icon: <SentimentSatisfiedAltIcon color="success" />,
+    icon: <SentimentSatisfiedAltIcon color="success" fontSize="large" />,
     label: 'Satisfied',
   },
   5: {
-    icon: <SentimentVerySatisfiedIcon color="success" />,
+    icon: <SentimentVerySatisfiedIcon color="success" fontSize="large" />,
     label: 'Very Satisfied',
   },
 };
@@ -50,7 +50,7 @@ export default function RatingComp() {
   return (
     <StyledRating
       name="rating"
-      defaultValue={2}
+      defaultValue={0}
       IconContainerComponent={IconContainer}
       getLabelText={(value) => customIcons[value].label}
       highlightSelectedOnly

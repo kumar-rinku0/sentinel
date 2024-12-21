@@ -6,6 +6,9 @@ import { useMsg } from "../alert/alert-provider";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
+import { Button } from "@mui/material"
+import TextField from '@mui/material/TextField';
+
 const Profile = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   const { setAlert } = useMsg();
@@ -75,43 +78,50 @@ const Profile = () => {
   }
   return (
     <div className='profile'>
-      {!isVisible.username ? (
-        <div>
-          {user.username}
-          <button type="button" onClick={() => renderForm("username", true)} >Update Username!</button>
-        </div>
-      ) : (
-        <div>
-          <form onSubmit={handleOnsubmit}>
-            <input type="text" name='username' value={inputs.username || ""} onChange={handleChange} required />
-            <button type="button" onClick={() => renderForm("username", false)} >cencel</button>
-            <button type='submit' >save!</button>
-          </form>
-        </div>
-      )}
+      <div className="profile-forms-container">
 
-      {!isVisible.password ? (
+        {!isVisible.username ? (
+          <div className="update-username">
+            {user.username}
+            <Button type="button" onClick={() => renderForm("username", true)} >Update Username!</Button>
+          </div>
+        ) : (
+          <div className="update-username-form">
+            <form onSubmit={handleOnsubmit} className="form">
+              <TextField type="text" label="new username!" variant="standard" size="small" name='username' value={inputs.username || ""} onChange={handleChange} required />
+              <div className="flex-row">
+                <Button type="button" variant="outlined" onClick={() => renderForm("username", false)} >cencel</Button>
+                <Button type='submit' variant="outlined" >save!</Button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {!isVisible.password ? (
+          <div className="change-password">
+            <Button type="button" onClick={() => renderForm("password", true)} >Change Password!</Button>
+          </div>
+        ) : (
+          <div className="">
+            <form onSubmit={handleOnsubmit} className="form">
+              <TextField type="password" label="old password" variant="standard" name='oldpassword' value={inputs.oldpassword || ""} onChange={handleChange} required />
+              <TextField type="password" label="new password" variant="standard" name='newpassword' value={inputs.newpassword || ""} onChange={handleChange} required />
+              <div className="flex-row">
+                <Button type="button" variant="outlined" onClick={() => renderForm("password", false)} >cencel</Button>
+                <Button type='submit' variant="outlined">save!</Button>
+              </div>
+            </form>
+          </div>
+        )}
         <div>
-          <button type="button" onClick={() => renderForm("password", true)} >Change Password!</button>
-        </div>
-      ) : (
-        <div>
-          <form onSubmit={handleOnsubmit}>
-            <input type="password" name='oldpassword' value={inputs.oldpassword || ""} onChange={handleChange} required />
-            <input type="password" name='newpassword' value={inputs.newpassword || ""} onChange={handleChange} required />
-            <button type="button" onClick={() => renderForm("password", false)} >cencel</button>
-            <button type='submit' >save!</button>
+          <form onSubmit={handleOnsubmit} className="form">
+            <div className="delelte-check">
+              <input type="checkbox" name="isAgree" id="isAgree" required />
+              <label htmlFor="isAgree" className="text-sm">deleting account will delete your created listings!</label>
+            </div>
+            <Button type="submit" variant="outlined" className="red" >DELETE ACCOUNT</Button>
           </form>
         </div>
-      )}
-      <div>
-        <form onSubmit={handleOnsubmit}>
-          <div>
-            <input type="checkbox" name="isAgree" id="isAgree" required />
-            <label htmlFor="isAgree">deleting account will delete your created listings!</label>
-          </div>
-          <button type="submit" style={{ backgroundColor: "red" }} >DELETE ACCOUNT</button>
-        </form>
       </div>
     </div>
   )

@@ -26,7 +26,6 @@ export const MsgProvider = ({ children }) => {
             onClose={handleClose}
             severity={`${alert[1]}`}
             variant="filled"
-            sx={{ width: '100%' }}
           >
             {alert[0]}
           </Alert>

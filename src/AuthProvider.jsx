@@ -6,6 +6,7 @@ const AuthContext = createContext();
 // Create a provider component
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const signIn = (userData) => {
@@ -25,11 +26,12 @@ export const AuthProvider = ({ children }) => {
     axios.get("/api").then((res) => {
       console.log(res.data.user);
       signIn(res.data.user)
+      setLoading(false);
     })
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, signIn, signOut, loading }}>
       {children}
     </AuthContext.Provider>
   );

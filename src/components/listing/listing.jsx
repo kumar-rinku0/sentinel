@@ -15,7 +15,6 @@ const Listing = () => {
   const { isAuthenticated, user, signIn, signOut } = useAuth();
   let { id } = useParams();
   const [accessToken, setAccessToken] = useState(null);
-  const [listingCreator, setListingCreator] = useState(null);
   const [listing, setListing] = useState([]);
   const navigate = useNavigate();
   const { title, description, location, image, price, reviews, createdBy } = listing;
@@ -35,7 +34,6 @@ const Listing = () => {
       console.log(res.data.listing);
       setListing(res.data.listing);
       setAccessToken(res.data.accessToken);
-      setListingCreator(res.data.listingCreatedBy);
       setLoading(false);
     }).catch((err) => {
       const { msg, type } = err.response.data;

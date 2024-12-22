@@ -7,14 +7,21 @@ import Profile from './components/profile/profile'
 import { Routes, Route } from "react-router";
 import NoPage from './no-page'
 import Listing from './components/listing/listing'
-import React from 'react'
 import { useAuth } from './AuthProvider';
 import Footer from './components/footer/footer'
 import Create from './components/forms/create';
-// import './app.css'
+import { FaReact } from 'react-icons/fa6'
+import './App.css'
 
 const App = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className='app'>
+        <FaReact size="4rem" />
+      </div>
+    )
+  }
   return (
     <>
       <Routes>
@@ -35,7 +42,6 @@ const App = () => {
         </Route>
       </Routes>
       <Footer />
-      {/* <div>app</div> */}
     </>
   )
 }

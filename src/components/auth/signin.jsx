@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
@@ -40,6 +40,12 @@ const SignIn = () => {
       })
   }
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate])
+
   return (
     <div className='login'>
       <div className='form-container'>
@@ -66,6 +72,9 @@ const SignIn = () => {
 
           <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Sign IN</button>
         </form>
+      </div>
+      <div className='google-login'>
+        <button className='btn' onClick={() => window.location.href = '/api/user/auth/google'}>Sign in with Google</button>
       </div>
     </div>
   )

@@ -7,6 +7,14 @@
   height: 50vh;
 }
 
+.auth-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
 .google-login {
   display: flex;
   justify-content: center;

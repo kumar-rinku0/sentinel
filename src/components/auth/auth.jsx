@@ -8,6 +8,7 @@ import React, { useEffect } from 'react'
 const Auth = ({ }) => {
   let params = new URLSearchParams(document.location.search);
   let code = params.get("code");
+  let error = params.get("error");
   const { setAlert } = useMsg();
   const { signIn } = useAuth();
   const navigate = useNavigate();
@@ -32,13 +33,21 @@ const Auth = ({ }) => {
           });
       })();
     }
+    if (error) {
+      setAlert([error, "error", true]);
+      navigate('/login');
+    }
     return () => {
       console.log("Auth unmounting....")
     }
 
-  }, [code])
+  }, [code, error]);
   return (
-    <h2>Auth Loading....!!</h2>
+    <div className='auth'>
+      <div className='auth-container'>
+        <p>Authenticating...</p>
+      </div>
+    </div>
   )
 }
 

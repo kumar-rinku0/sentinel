@@ -15,11 +15,11 @@ const Footer = () => {
         </p>
       </div>
       <div className="references">
-        <Link prefetch={false} to="/">Terms and conditions</Link>
-        <Link prefetch={false} to="/">Privacy policy</Link>
+        <Link prefetch={false} to="/terms">Terms and conditions</Link>
+        <Link prefetch={false} to="/policy">Privacy policy</Link>
         <Link prefetch={false} to="/">Contect</Link>
-        <Link prefetch={false} to="/">API docs</Link>
-        <Link prefetch={false} to="/">Refund policy</Link>
+        <Link prefetch={false} to="/terms">API docs</Link>
+        <Link prefetch={false} to="/policy">Refund policy</Link>
       </div>
       <div className="social-copyright-container">
         <div className="copyright">Copyright © 2024 InferNo, All rights reserved.</div>

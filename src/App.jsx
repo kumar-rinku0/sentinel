@@ -4,8 +4,10 @@ import Explore from './components/explore/explore'
 import Header from './components/header/header'
 import MyListing from './components/explore/my-listing'
 import Profile from './components/profile/profile'
-import { Routes, Route } from "react-router";
+import PrivacyPolicy from './components/footer/privacy-policy'
+import TermsConditions from './components/footer/terms-conditions'
 import NoPage from './no-page'
+import { Routes, Route } from "react-router";
 import Listing from './components/listing/listing'
 import { useAuth } from './AuthProvider';
 import Footer from './components/footer/footer'
@@ -40,6 +42,8 @@ const App = () => {
           )}
           <Route path="listing/:id" element={<Listing />} />
           <Route path="listing/:id/edit" element={<Create />} />
+          <Route path="terms" element={<TermsConditions />} />
+          <Route path="policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

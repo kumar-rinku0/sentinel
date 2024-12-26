@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../../AuthProvider';
 import "./auth.css";
 import { useMsg } from '../alert/alert-provider';
+import { authorizeUrl } from './google-auth';
 
 
 
@@ -74,7 +75,7 @@ const SignIn = () => {
         </form>
       </div>
       <div className='google-login'>
-        <button className='google-btn' onClick={() => window.location.href = '/api/user/auth/google'} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
+        <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
       </div>
     </div>
   )

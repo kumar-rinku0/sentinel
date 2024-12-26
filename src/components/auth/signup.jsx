@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./auth.css"
+import { authorizeUrl } from './google-auth';
 import { useAuth } from '../../AuthProvider';
 import { useNavigate } from 'react-router';
 import { useMsg } from "../alert/alert-provider"
@@ -41,6 +42,12 @@ function SignUp() {
       })
   }
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate])
+
   return (
     <div className='register'>
       <div className='form-container'>
@@ -72,6 +79,9 @@ function SignUp() {
           />
           <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Register!</button>
         </form>
+      </div>
+      <div className='google-login'>
+        <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
       </div>
     </div>
   )

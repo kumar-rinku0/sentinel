@@ -12,6 +12,7 @@ import Footer from './components/footer/footer'
 import Create from './components/forms/create';
 import { FaReact } from 'react-icons/fa6'
 import './App.css'
+import Auth from './components/auth/auth'
 
 const App = () => {
   const { isAuthenticated, user, loading } = useAuth();
@@ -29,6 +30,7 @@ const App = () => {
           <Route index element={<Explore />} />
           <Route path="login" element={<SignIn />} />
           <Route path="register" element={<SignUp />} />
+          <Route path="auth/google/callback" element={<Auth />} />
           {isAuthenticated && (
             <>
               <Route path="mylisting" element={<MyListing />} />

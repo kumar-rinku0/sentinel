@@ -56,7 +56,7 @@ const Profile = () => {
         setAlert([msg, type, true]);
         signOut();
         navigate("/");
-      }).then((err) => {
+      }).catch((err) => {
         console.log(err.response.data);
         const { msg, type } = err.response.data;
         setAlert([msg, type, true]);

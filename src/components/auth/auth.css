@@ -7,6 +7,25 @@
   height: 50vh;
 }
 
+.google-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.google-btn {
+  width: 15rem;
+  height: 3rem;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  cursor: pointer;
+  background-color: #4285f4;
+  color: white;
+}
+
 .auth-form {
   display: flex;
   justify-content: center;

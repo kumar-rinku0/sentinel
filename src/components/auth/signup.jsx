@@ -51,7 +51,7 @@ function SignUp() {
   return (
     <div className='register'>
       <div className='form-container'>
-        <h3>Register!</h3>
+        <div className='heading'>Register!</div>
         <form onSubmit={handleSubmit} className='auth-form'>
           <input
             type="text"
@@ -79,9 +79,10 @@ function SignUp() {
           />
           <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Register!</button>
         </form>
-      </div>
-      <div className='google-login'>
-        <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
+        <div>or</div>
+        <div className='google-login'>
+          <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
+        </div>
       </div>
     </div>
   )

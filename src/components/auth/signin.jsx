@@ -50,7 +50,7 @@ const SignIn = () => {
   return (
     <div className='login'>
       <div className='form-container'>
-        <h3>Login!</h3>
+        <div className='heading'>Login!</div>
         <form onSubmit={handleSubmit} className='auth-form'>
           <input
             type="text"
@@ -73,9 +73,10 @@ const SignIn = () => {
 
           <button type="submit" className='btn' disabled={isAuthenticated || disableBtn}>Sign IN</button>
         </form>
-      </div>
-      <div className='google-login'>
-        <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
+        <div>or</div>
+        <div className='google-login'>
+          <button className='google-btn' onClick={() => window.location.href = authorizeUrl} disabled={isAuthenticated || disableBtn}>Sign in with Google</button>
+        </div>
       </div>
     </div>
   )

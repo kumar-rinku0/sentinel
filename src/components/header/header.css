@@ -27,8 +27,7 @@
 
 .header .layout-filled-btn {
   box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 15px;
-  background-color: #ef7b45;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   border-radius: 1rem;
   color: #2B2D42;
   border: none;

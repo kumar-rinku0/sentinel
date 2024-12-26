@@ -1,10 +1,10 @@
 .form-container {
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  height: 50vh;
+  gap: 1rem;
 }
 
 .auth-container {
@@ -23,13 +23,13 @@
 }
 
 .google-btn {
-  width: 15rem;
+  width: 16rem;
   height: 3rem;
   border: none;
   font-size: 0.9rem;
-  font-weight: 700;
   border-radius: 2rem;
   cursor: pointer;
+  font-family: "Poppins", serif;
   background-color: #4285f4;
   color: white;
 }
@@ -39,7 +39,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .auth-form input {
@@ -48,29 +48,32 @@
   border: none;
   font-size: 0.9rem;
   border-radius: 2rem;
-  padding: 0 1rem;
+  padding-left: 1rem;
+  /* padding: 0 1rem;  */
   background-color: lightgray;
-  color: black;
-  font-weight: 600;
+  font-family: "Poppins", serif;
+  color: rgb(54, 53, 53);
 }
 
 .auth-form input::placeholder {
-  color: black;
+  color: rgb(54, 53, 53);
 }
 
 .auth-form .btn {
-  width: 17rem;
+  width: 16rem;
   height: 3rem;
   border: none;
   font-size: 0.9rem;
-  font-weight: 700;
   border-radius: 2rem;
   cursor: pointer;
-  background-color: greenyellow;
+  font-family: "Poppins", serif;
+  background-color: #ef7b45;
+  color: white;
 }
 
-h3 {
+.heading {
   text-align: center;
+  padding: 1rem 0;
 }
 
 .auth-form input:focus {
